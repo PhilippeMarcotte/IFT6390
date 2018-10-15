@@ -26,15 +26,12 @@ class RegressionGradient:
 
         self.theta = np.random.uniform(size=(train_inputs.shape[1] + 1, 1)) if train_inputs.ndim > 1 else np.random.uniform(size=(2, 1))
 
-        self.i = 0
-        theta_isnan = False
         for self.i in range(self.epochs):
             cost = self.gradient_step()
-            theta_isnan = np.any(np.isnan(self.theta))
 
-        print("Iteration : {}, cost : {}".format(self.i + 1, cost))
+        #print("Iteration : {}, cost : {}".format(self.i + 1, cost))
 
-        return self.theta
+        return self.theta, cost
 
     def predict(self, test_inputs):
         test_inputs = np.insert(test_inputs, 0, 1, axis=1)
